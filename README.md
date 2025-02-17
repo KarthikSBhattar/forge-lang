@@ -2,6 +2,8 @@
 
 This is a **Forge Interpreter** written in Python, implementing a simple stack-based programming language that uses **Reverse Polish Notation (RPN)**. The interpreter supports low-level memory management, expanded types, and extended string, list, and dictionary methods, offering flexibility for a wide range of use cases.
 
+<img src="https://github.com/KarthikSBhattar/forge-lang/blob/main/logo.png?raw=true" width="300"/>
+
 ## Features
 - **Stack Operations**: Duplicate, swap, drop, over, and rotate stack items.
 - **Arithmetic Operations**: Addition, subtraction, multiplication, division, and modulo.
