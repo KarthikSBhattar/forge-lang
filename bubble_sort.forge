@@ -1,0 +1,68 @@
+# Get input from user
+"Enter numbers to sort (space-separated): " print
+input str_split "str_numbers" store
+
+# Create initial empty list
+0 0 list "numbers" store
+
+# Convert string list to numeric list
+0 "i" store
+"i" load "str_numbers" load list_len lt while
+    "numbers" load
+    "str_numbers" load "i" load list_get int 
+    list_append "numbers" store
+    
+    # Increment counter
+    "i" load 1 add "i" store
+    "i" load "str_numbers" load list_len lt
+end
+
+# Print original list
+"Original list: " "numbers" load print
+
+# Get list length
+"numbers" load list_len "len" store
+
+# Outer loop counter
+0 "i" store
+
+# Outer loop (iterate len-1 times)
+"i" load "len" load 1 sub lt while
+    # Inner loop counter
+    0 "j" store
+    
+    # Inner loop (iterate len-i-1 times)
+    "j" load "len" load "i" load sub 1 sub lt while
+        # Compare adjacent elements as numbers
+        "numbers" load "j" load list_get int
+        "numbers" load "j" load 1 add list_get int
+        gt if
+            # Get elements for swap
+            "numbers" load "j" load list_get "temp" store
+            
+            # Perform swap
+            "numbers" load "j" load 
+            "numbers" load "j" load 1 add list_get
+            list_set
+            
+            "numbers" load "j" load 1 add
+            "temp" load
+            list_set
+        end
+        
+        # Increment inner loop counter
+        "j" load 1 add "j" store
+        
+        # Continue inner loop condition check
+        "j" load "len" load "i" load sub 1 sub lt
+    end
+    
+    # Increment outer loop counter
+    "i" load 1 add "i" store
+    
+    # Continue outer loop condition check
+    "i" load "len" load 1 sub lt
+end
+
+# Print sorted list
+"Sorted list: " "numbers" load print

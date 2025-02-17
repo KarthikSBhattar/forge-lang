@@ -1,0 +1,240 @@
+# Basic stack operations
+1 2 add
+5 3 sub
+add print # Outputs 5
+
+# Variable assignment and retrieval
+10 "Hello, World!" store
+"Hello, World!" load print # Outputs 10
+
+# Control flow
+# (condition) if (true) else (false) end
+1 2 gt 
+if 
+  "Greater" 
+else 
+  "Smaller" 
+end 
+
+print # Outputs "Smaller"
+
+# Duplicate and swap
+1 2 dup print # Outputs 2
+1 2 swap print # Outputs 1
+
+"Loops!" print
+
+"" "loop_output" store
+
+# Looping
+1 9 for 
+  dup
+  1 add 
+  dup "loop_output" store
+end # Outputs numbers from 1 to 9
+"loop_output" load print # Outputs 10
+
+0 "counter" store
+
+# While loop
+"counter" load 10 lt while 
+  "counter" load
+  1 add
+  "counter" store
+  "counter" load 10 lt
+end
+
+"Final counter: " "counter" load str add print
+
+# Function definition and call
+def add_numbers
+  5 3 add
+end
+add_numbers print # Outputs 8
+
+# Or with a parameter
+def add_numbers_with_param
+  dup 3 add
+end
+
+1 add_numbers_with_param
+str
+"total" store
+
+"1 + 3 = " "total" load add print # Outputs 1 + 3 = 4
+
+"Some FizzBuzz?" print
+1 15 for
+  dup 15 mod 0 eq if
+    "FizzBuzz" print
+  else
+    dup 3 mod 0 eq if
+      "Fizz" print
+    else
+      dup 5 mod 0 eq if
+        "Buzz" print
+      else
+        dup print
+      end
+    end
+  end
+end
+
+# Factorial example
+def fact
+    dup 1 gt if
+        dup 1 sub fact mul
+    end
+end
+
+"Enter a number: " print
+input "num" store # Get user input
+"The factorial of " "num" load str add " is " add "num" load fact str add print
+
+"Enter a list of numbers (space-separated): " print
+input "numbers" store
+"All numbers (as a list): " print
+"numbers" load str_split print
+
+"numbers" load str_split list_len "len" store
+"Length of the list: " "len" load str add print
+
+# Loop through the list
+0 "len" load 1 sub for
+  "i" store
+  "numbers" load str_split "i" load list_get print
+end
+
+# New list <items> size
+1 2 3 3 list "numbers" store
+"numbers" load list_len print # Outputs 3
+
+# List append
+1 2 2 3 list "numbers" store
+"numbers" load 4 list_append
+"numbers" load print # Outputs [1, 2, 2, 4]
+"numbers" load list_len print # Outputs 4
+
+# List pop
+"numbers" load list_pop
+"numbers" load print # Outputs [1, 2, 2]
+
+# List pop at index
+"numbers" load 1 list_pop_at
+"numbers" load print # Outputs [1, 2] (element at index 1 removed)
+
+# List insert
+"numbers" load 1 12 list_insert
+"numbers" load print # Outputs [1, 12, 2]
+
+# List remove
+"numbers" load 1 list_remove
+"numbers" load print # Outputs [12, 2] (removes first occurrence of 1)
+
+# List extend
+"numbers" load 7 8 2 list list_extend
+"numbers" load print # Outputs [12, 2, 7, 8]
+
+# List index
+"numbers" load 7 list_index print # Outputs 2 (index of element 7)
+
+# List count
+"numbers" load 2 list_count print # Outputs 1 (counts occurrences of 2)
+
+# List sort
+"numbers" load list_sort
+"numbers" load print # Outputs [2, 7, 8, 12]
+
+# List reverse
+"numbers" load list_reverse
+"numbers" load print # Outputs [12, 8, 7, 2]
+
+# List copy
+"numbers" load list_copy
+"numbers" load print # Outputs [12, 8, 7, 2] (copy of the list)
+
+# List clear
+"numbers" load list_clear
+"numbers" load print # Outputs [] (list is cleared)
+
+# List len
+"numbers" load list_len print # Outputs 0 (length of the list)
+
+# List append
+"numbers" load 1 list_append
+
+# List get
+"numbers" load 0 list_get print # Outputs 1 (element at index 0)
+
+# List set
+"numbers" load 0 99 list_set
+"numbers" load print # Outputs [99] (element at index 0 is set to 99)
+
+"numbers" load 12 7 8 9 4 list list_extend
+
+# List slice
+"numbers" load 0 3 list_slice print # Outputs [99, 12, 7] (sublist from index 0 to 3)
+
+# Dict example
+"key1" "value1" "key2" "value2" 2 dict "my_dict" store
+"my_dict" load "key1" dict_get print # Outputs value1
+"my_dict" load "key2" dict_get print # Outputs value2
+"my_dict" load "key3" dict_get print # Outputs none (key3 does not exist)
+
+# Dict keys
+"my_dict" load dict_keys list_reverse print # Outputs ["key1", "key2"]
+
+# Dict values
+"my_dict" load dict_values list_reverse print # Outputs ["value1", "value2"]
+
+# Dict items
+"my_dict" load dict_items list_reverse print # Outputs [("key1", "value1"), ("key2", "value2")]
+
+# Dict pop
+"my_dict" load "key1" dict_pop print # Outputs value1
+
+# Dict set
+"my_dict" load "key3" "value3" dict_set # Adds key3 with value3
+"my_dict" load dict_keys print # Outputs ["key2", "key3"] (no need to reverse since dict_keys is already in order of insertion)
+
+# String operations
+# String find (find the index of a substring)
+"Hello, World!" "World" str_find print # Outputs 7 (index of "World")
+
+# String upper (convert to uppercase)
+"hello" str_upper print # Outputs "HELLO"
+
+# String lower (convert to lowercase)
+"HELLO" str_lower print # Outputs "hello"
+
+# String split (split the string by whitespace)
+"hello world" str_split print # Outputs ["hello", "world"]
+
+# String split on (split the string by a custom separator)
+"hello,world,foo" "," str_split_on print # Outputs ["hello", "world", "foo"]
+
+# String join (join a list of strings with a separator)
+"hello" "world" 2 list " " str_join print # Outputs "hello world"
+
+# String replace (replace a substring with another substring)
+"hello world" "world" "everyone" str_replace print # Outputs "hello everyone"
+
+# String strip (remove leading and trailing whitespaces)
+"  hello world  " str_strip print # Outputs "hello world"
+
+# String startswith (check if the string starts with a prefix)
+"hello world" "hello" str_startswith print # Outputs true
+
+# String endswith (check if the string ends with a suffix)
+"hello world" "world" str_endswith print # Outputs true
+
+# String capitalize (capitalize the first letter of the string)
+"hello" str_capitalize print # Outputs "Hello"
+
+# String isdigit (check if the string consists of digits)
+"1234" str_isdigit print # Outputs true
+"hello" str_isdigit print # Outputs false
+
+# String isalpha (check if the string consists of alphabetic characters)
+"hello" str_isalpha print # Outputs true
+"hello123" str_isalpha print # Outputs false
